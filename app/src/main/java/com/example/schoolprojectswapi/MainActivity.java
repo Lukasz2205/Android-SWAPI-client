@@ -78,7 +78,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(List<CharacterModel> characterModels) {
                         ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, characterModels);
-                            sw_dataContainer.setAdapter(arrayAdapter);
+                        sw_dataContainer.setAdapter(arrayAdapter);
+                        sw_dataContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                CharacterModel obj = characterModels.get(position);
+                                Intent intent = new Intent(MainActivity.this, CharacterDetails.class);
+                                intent.putExtra("object", obj);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 });
             }
