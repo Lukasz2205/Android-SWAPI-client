@@ -70,4 +70,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sw_dataInput"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_getPlanetsList"
+        android:layout_width="182dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="35dp"
+        android:text="Wyświetl wszystkie planety"
+        app:layout_constraintBottom_toTopOf="@+id/sw_dataInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_getPlanet"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

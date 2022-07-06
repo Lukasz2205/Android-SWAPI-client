@@ -8,10 +8,10 @@ public class PlanetModel {
     private String climate;
     private String gravity;
     private String terrain;
-    private int surface_water;
-    private int population;
+    private String surface_water;
+    private String population;
 
-    public PlanetModel(String name, int rotation_period, int orbital_period, int diameter, String climate, String gravity, String terrain, int surface_water, int population) {
+    public PlanetModel(String name, int rotation_period, int orbital_period, int diameter, String climate, String gravity, String terrain, String surface_water, String population) {
         this.name = name;
         this.rotation_period = rotation_period;
         this.orbital_period = orbital_period;
@@ -97,19 +97,19 @@ public class PlanetModel {
         this.terrain = terrain;
     }
 
-    public int getSurface_water() {
+    public String getSurface_water() {
         return surface_water;
     }
 
-    public void setSurface_water(int surface_water) {
+    public void setSurface_water(String surface_water) {
         this.surface_water = surface_water;
     }
 
-    public int getPopulation() {
+    public String getPopulation() {
         return population;
     }
 
-    public void setPopulation(int population) {
+    public void setPopulation(String population) {
         this.population = population;
     }
 }
