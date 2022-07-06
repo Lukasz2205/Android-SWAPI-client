@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 CharacterService characterService = new CharacterService(MainActivity.this);
 
-                characterService.getCharacter(sw_dataInput.getText().toString(), new CharacterService.SingleCharacterResponseListener(){
+                characterService.getCharacter(sw_dataInput.getText().toString(), new CharacterService.SpecificCharacterResponseListener(){
                     @Override
                     public void onError(String message) {
                         Toast.makeText(MainActivity.this, "Something wrong", Toast.LENGTH_SHORT).show();

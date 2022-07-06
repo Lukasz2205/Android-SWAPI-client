@@ -7,10 +7,10 @@ public class CharacterModel {
     private String birth_year;
     private String gender;
     private String homeworld;
-    private int height;
-    private int mass;
+    private String height;
+    private String mass;
 
-    public CharacterModel(String name, String hair_color, String skin_color, String birth_year, String gender, String homeworld, int height, int mass) {
+    public CharacterModel(String name, String hair_color, String skin_color, String birth_year, String gender, String homeworld, String height, String mass) {
         this.name = name;
         this.hair_color = hair_color;
         this.skin_color = skin_color;
@@ -86,19 +86,19 @@ public class CharacterModel {
         this.homeworld = homeworld;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public int getMass() {
+    public String getMass() {
         return mass;
     }
 
-    public void setMass(int mass) {
+    public void setMass(String mass) {
         this.mass = mass;
     }
 }

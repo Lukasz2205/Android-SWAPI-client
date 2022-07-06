@@ -26,13 +26,13 @@ public class CharacterService {
         this.context = context;
     }
 
-    public interface SingleCharacterResponseListener {
+    public interface SpecificCharacterResponseListener {
         void onError(String message);
 
         void onResponse(List<CharacterModel> characterModels);
     };
 
-    public void getCharacter(String characterId, final SingleCharacterResponseListener singleCharacterResponseListener) {
+    public void getCharacter(String characterId, final SpecificCharacterResponseListener specificCharacterResponseListener) {
         List<CharacterModel> characterModels = new ArrayList<>();
         String url = QUERY_FOR_CHARACTER_NAME + characterId;
 
@@ -42,22 +42,27 @@ public class CharacterService {
                 try {
                     JSONArray result = response.getJSONArray("results");
 
-                    CharacterModel singleCharacter = new CharacterModel();
 
-                    JSONObject character = (JSONObject) result.get(0);
+                    for (int i = 0; i < result.length() ; i++) {
+                        JSONObject specific_character_api = (JSONObject) result.get(i);
 
-                    singleCharacter.setName(character.getString("name"));
-                    singleCharacter.setHair_color(character.getString("hair_color"));
-                    singleCharacter.setSkin_color(character.getString("skin_color"));
-                    singleCharacter.setBirth_year(character.getString("birth_year"));
-                    singleCharacter.setGender(character.getString("gender"));
-                    singleCharacter.setHomeworld(character.getString("homeworld"));
-                    singleCharacter.setHeight(character.getInt("height"));
-                    singleCharacter.setMass(character.getInt("mass"));
+                        CharacterModel single_character = new CharacterModel();
 
-                    characterModels.add(singleCharacter);
+                        single_character.setName(specific_character_api.getString("name"));
+                        single_character.setHair_color(specific_character_api.getString("hair_color"));
+                        single_character.setSkin_color(specific_character_api.getString("skin_color"));
+                        single_character.setBirth_year(specific_character_api.getString("birth_year"));
+                        single_character.setGender(specific_character_api.getString("gender"));
+                        single_character.setHomeworld(specific_character_api.getString("homeworld"));
+                        single_character.setHeight(specific_character_api.getString("height"));
+                        single_character.setMass(specific_character_api.getString("mass"));
 
-                    singleCharacterResponseListener.onResponse(characterModels);
+                        characterModels.add(single_character);
+                    }
+
+                    specificCharacterResponseListener.onResponse(characterModels);
+
+                    //get the first item
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -66,7 +71,7 @@ public class CharacterService {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
-                singleCharacterResponseListener.onError("Something wrong");
+                specificCharacterResponseListener.onError("Something wrong");
 
             }
         });
@@ -101,8 +106,8 @@ public class CharacterService {
                         character.setBirth_year(first_character_api.getString("birth_year"));
                         character.setGender(first_character_api.getString("gender"));
                         character.setHomeworld(first_character_api.getString("homeworld"));
-                        character.setHeight(first_character_api.getInt("height"));
-                        character.setMass(first_character_api.getInt("mass"));
+                        character.setHeight(first_character_api.getString("height"));
+                        character.setMass(first_character_api.getString("mass"));
 
                         characterModels.add(character);
                     }
