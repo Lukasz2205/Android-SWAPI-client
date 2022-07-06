@@ -48,19 +48,6 @@ public class CharacterModel implements Parcelable {
         return name;
     }
 
-    public String toStringFullData() {
-        return "CharacterModel{" +
-                "name='" + name + '\'' +
-                ", hair_color='" + hair_color + '\'' +
-                ", skin_color='" + skin_color + '\'' +
-                ", birth_year='" + birth_year + '\'' +
-                ", gender='" + gender + '\'' +
-                ", homeworld='" + homeworld + '\'' +
-                ", height='" + height + '\'' +
-                ", mass='" + mass + '\'' +
-                '}';
-    }
-
     public String getName() {
         return name;
     }

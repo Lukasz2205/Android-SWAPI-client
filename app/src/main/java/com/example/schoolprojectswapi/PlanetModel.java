@@ -1,6 +1,9 @@
 package com.example.schoolprojectswapi;
 
-public class PlanetModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PlanetModel implements Parcelable {
     private String name;
     private int rotation_period;
     private int orbital_period;
@@ -25,6 +28,30 @@ public class PlanetModel {
 
     public PlanetModel() {
     }
+
+    protected PlanetModel(Parcel in) {
+        name = in.readString();
+        rotation_period = in.readInt();
+        orbital_period = in.readInt();
+        diameter = in.readInt();
+        climate = in.readString();
+        gravity = in.readString();
+        terrain = in.readString();
+        surface_water = in.readString();
+        population = in.readString();
+    }
+
+    public static final Creator<PlanetModel> CREATOR = new Creator<PlanetModel>() {
+        @Override
+        public PlanetModel createFromParcel(Parcel in) {
+            return new PlanetModel(in);
+        }
+
+        @Override
+        public PlanetModel[] newArray(int size) {
+            return new PlanetModel[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -101,5 +128,23 @@ public class PlanetModel {
 
     public void setPopulation(String population) {
         this.population = population;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeInt(rotation_period);
+        parcel.writeInt(orbital_period);
+        parcel.writeInt(diameter);
+        parcel.writeString(climate);
+        parcel.writeString(gravity);
+        parcel.writeString(terrain);
+        parcel.writeString(surface_water);
+        parcel.writeString(population);
     }
 }

@@ -108,6 +108,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(List<PlanetModel> planetModels) {
                         ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, planetModels);
                         sw_dataContainer.setAdapter(arrayAdapter);
+                        sw_dataContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                PlanetModel obj = planetModels.get(position);
+                                Intent intent = new Intent(MainActivity.this, PlanetDetails.class);
+                                intent.putExtra("object", obj);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 });
             }
@@ -128,6 +137,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(List<PlanetModel> planetModels) {
                         ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, planetModels);
                         sw_dataContainer.setAdapter(arrayAdapter);
+                        sw_dataContainer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                PlanetModel obj = planetModels.get(position);
+                                Intent intent = new Intent(MainActivity.this, PlanetDetails.class);
+                                intent.putExtra("object", obj);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 });
             }
