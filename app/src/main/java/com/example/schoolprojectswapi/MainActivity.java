@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(List<CharacterModel> characterModels) {
-                        Toast.makeText(MainActivity.this, "The character name is: " + characterModels.toString(), Toast.LENGTH_SHORT).show();
-
+                        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, characterModels);
+                        sw_dataContainer.setAdapter(arrayAdapter);
                     }
                 });
             }
@@ -76,15 +76,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 PlanetService planetService = new PlanetService(MainActivity.this);
 
-                planetService.getPlanet(sw_dataInput.getText().toString(), new PlanetService.VolleyResponseListener(){
+                planetService.getPlanet(sw_dataInput.getText().toString(), new PlanetService.SinglePlanetResponseListener(){
                     @Override
                     public void onError(String message) {
                         Toast.makeText(MainActivity.this, "Something wrong", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onResponse(String planetName) {
-                        Toast.makeText(MainActivity.this, "The character name is: " + planetName, Toast.LENGTH_SHORT).show();
+                    public void onResponse(List<PlanetModel> planetModels) {
+                        ArrayAdapter arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, planetModels);
+                        sw_dataContainer.setAdapter(arrayAdapter);
                     }
                 });
             }
