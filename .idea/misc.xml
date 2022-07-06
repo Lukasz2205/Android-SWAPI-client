@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/zixso/Desktop/Android Projects/SchoolProjectSWAPI/app/src/main/res/layout/activity_character_details.xml" value="0.271875" />
         <entry key="..\:/Users/zixso/Desktop/Android Projects/SchoolProjectSWAPI/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/zixso/Desktop/Android Projects/SchoolProjectSWAPI/app/src/main/res/layout/activity_planet_details.xml" value="0.2578125" />
       </map>
     </option>
   </component>

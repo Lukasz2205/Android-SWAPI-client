@@ -1,14 +1,10 @@
 package com.example.schoolprojectswapi;
 
-public class CharacterModel {
-    private String name;
-    private String hair_color;
-    private String skin_color;
-    private String birth_year;
-    private String gender;
-    private String homeworld;
-    private String height;
-    private String mass;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class CharacterModel implements Parcelable {
+    private String name, hair_color, skin_color, birth_year, gender, homeworld, height, mass;
 
     public CharacterModel(String name, String hair_color, String skin_color, String birth_year, String gender, String homeworld, String height, String mass) {
         this.name = name;
@@ -24,9 +20,45 @@ public class CharacterModel {
     public CharacterModel() {
     }
 
+    protected CharacterModel(Parcel in) {
+        name = in.readString();
+        hair_color = in.readString();
+        skin_color = in.readString();
+        birth_year = in.readString();
+        gender = in.readString();
+        homeworld = in.readString();
+        height = in.readString();
+        mass = in.readString();
+    }
+
+    public static final Creator<CharacterModel> CREATOR = new Creator<CharacterModel>() {
+        @Override
+        public CharacterModel createFromParcel(Parcel in) {
+            return new CharacterModel(in);
+        }
+
+        @Override
+        public CharacterModel[] newArray(int size) {
+            return new CharacterModel[size];
+        }
+    };
+
     @Override
     public String toString() {
         return name;
+    }
+
+    public String toStringFullData() {
+        return "CharacterModel{" +
+                "name='" + name + '\'' +
+                ", hair_color='" + hair_color + '\'' +
+                ", skin_color='" + skin_color + '\'' +
+                ", birth_year='" + birth_year + '\'' +
+                ", gender='" + gender + '\'' +
+                ", homeworld='" + homeworld + '\'' +
+                ", height='" + height + '\'' +
+                ", mass='" + mass + '\'' +
+                '}';
     }
 
     public String getName() {
@@ -91,5 +123,22 @@ public class CharacterModel {
 
     public void setMass(String mass) {
         this.mass = mass;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(hair_color);
+        parcel.writeString(skin_color);
+        parcel.writeString(birth_year);
+        parcel.writeString(gender);
+        parcel.writeString(homeworld);
+        parcel.writeString(height);
+        parcel.writeString(mass);
     }
 }
