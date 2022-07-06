@@ -36,15 +36,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 CharacterService characterService = new CharacterService(MainActivity.this);
 
-                characterService.getCharacter(sw_dataInput.getText().toString(), new CharacterService.VolleyResponseListener(){
+                characterService.getCharacter(sw_dataInput.getText().toString(), new CharacterService.SingleCharacterResponseListener(){
                     @Override
                     public void onError(String message) {
                         Toast.makeText(MainActivity.this, "Something wrong", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onResponse(String characterName) {
-                        Toast.makeText(MainActivity.this, "The character name is: " + characterName, Toast.LENGTH_SHORT).show();
+                    public void onResponse(List<CharacterModel> characterModels) {
+                        Toast.makeText(MainActivity.this, "The character name is: " + characterModels.toString(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }

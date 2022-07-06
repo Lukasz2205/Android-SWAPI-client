@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterService {
-    public static final String QUERY_FOR_CHARACTER_NAME = "https://swapi.dev/api/people/";
+    public static final String QUERY_FOR_CHARACTER_NAME = "https://swapi.dev/api/people/?search=";
     public static final String QUERY_FOR_CHARACTER_LIST = "https://swapi.dev/api/people/";
 
     Context context;
@@ -26,31 +26,47 @@ public class CharacterService {
         this.context = context;
     }
 
-    public interface VolleyResponseListener {
+    public interface SingleCharacterResponseListener {
         void onError(String message);
 
-        void onResponse(String characterName);
+        void onResponse(List<CharacterModel> characterModels);
     };
 
-    public void getCharacter(String characterId, final VolleyResponseListener volleyResponseListener) {
+    public void getCharacter(String characterId, final SingleCharacterResponseListener singleCharacterResponseListener) {
+        List<CharacterModel> characterModels = new ArrayList<>();
         String url = QUERY_FOR_CHARACTER_NAME + characterId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                characterName = "";
                 try {
-                    characterName = response.getString("name");
+                    JSONArray result = response.getJSONArray("results");
+
+                    CharacterModel singleCharacter = new CharacterModel();
+
+                    JSONObject character = (JSONObject) result.get(0);
+
+                    singleCharacter.setName(character.getString("name"));
+                    singleCharacter.setHair_color(character.getString("hair_color"));
+                    singleCharacter.setSkin_color(character.getString("skin_color"));
+                    singleCharacter.setBirth_year(character.getString("birth_year"));
+                    singleCharacter.setGender(character.getString("gender"));
+                    singleCharacter.setHomeworld(character.getString("homeworld"));
+                    singleCharacter.setHeight(character.getInt("height"));
+                    singleCharacter.setMass(character.getInt("mass"));
+
+                    characterModels.add(singleCharacter);
+
+                    singleCharacterResponseListener.onResponse(characterModels);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                volleyResponseListener.onResponse(characterName);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
-                volleyResponseListener.onError("Something wrong");
+                singleCharacterResponseListener.onError("Something wrong");
 
             }
         });
