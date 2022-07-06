@@ -28,17 +28,7 @@ public class PlanetModel {
 
     @Override
     public String toString() {
-        return "PlanetModel{" +
-                "name='" + name + '\'' +
-                ", rotation_period=" + rotation_period +
-                ", orbital_period=" + orbital_period +
-                ", diameter=" + diameter +
-                ", climate='" + climate + '\'' +
-                ", gravity='" + gravity + '\'' +
-                ", terrain='" + terrain + '\'' +
-                ", surface_water=" + surface_water +
-                ", population=" + population +
-                '}';
+        return name;
     }
 
     public String getName() {

@@ -26,16 +26,7 @@ public class CharacterModel {
 
     @Override
     public String toString() {
-        return "CharacterModel{" +
-                "name='" + name + '\'' +
-                ", hair_color='" + hair_color + '\'' +
-                ", skin_color='" + skin_color + '\'' +
-                ", birth_year='" + birth_year + '\'' +
-                ", gender='" + gender + '\'' +
-                ", homeworld='" + homeworld + '\'' +
-                ", height=" + height +
-                ", mass=" + mass +
-                '}';
+        return name;
     }
 
     public String getName() {
