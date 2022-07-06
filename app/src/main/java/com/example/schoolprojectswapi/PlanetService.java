@@ -11,35 +11,35 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CharacterService {
-    public static final String QUERY_FOR_CHARACTER_NAME = "https://swapi.dev/api/people/";
+public class PlanetService {
+    public static final String QUERY_FOR_PLANET_NAME = "https://swapi.dev/api/planets/";
 
     Context context;
-    String characterName;
+    String planetName;
 
-    public CharacterService(Context context) {
+    public PlanetService(Context context) {
         this.context = context;
     }
 
     public interface VolleyResponseListener {
         void onError(String message);
 
-        void onResponse(String characterName);
+        void onResponse(String planetName);
     };
 
-    public void getCharacter(String characterId, final VolleyResponseListener volleyResponseListener) {
-        String url = QUERY_FOR_CHARACTER_NAME + characterId;
+    public void getPlanet(String planetId, final VolleyResponseListener volleyResponseListener) {
+        String url = QUERY_FOR_PLANET_NAME + planetId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                characterName = "";
+                planetName = "";
                 try {
-                    characterName = response.getString("name");
+                    planetName = response.getString("name");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                volleyResponseListener.onResponse(characterName);
+                volleyResponseListener.onResponse(planetName);
             }
         }, new Response.ErrorListener() {
             @Override
